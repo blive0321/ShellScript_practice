@@ -38,8 +38,19 @@ do
     echo $l
 done
 
-# while read讀取AllPCIeBDF檔案的每一行，並對每行文字進行處理
+# while read逐行讀取AllPCIeBDF，並對每行文字進行處理
+lspci -PP > AllPCIeBDF
 while IFS=/ RootPort EndPort
 do
     echo "${RootPort} and ${EndPort}"
 done < AllPCIeBDF
+
+# while read逐行讀取CPUInfo.txt，並逐行if判斷有符合的，才儲存至陣列
+while read line
+do
+    if echo "${line}" | grep -iE "[A-Z].* \(.*\)" > /dev/null
+    then
+            FeatureSpec=`echo "${line}"`
+            ProcessorFeaturesSpec+=("${FeatureSpec}")
+    fi
+done < CPUInfo.txt
