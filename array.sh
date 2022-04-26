@@ -49,4 +49,23 @@ done
 
 echo "${cityMember[linda]}~~~~~"   # taichung~~~~~
 
+# 宣告空陣列，並將元素儲存到空陣列
+A1="Brandon"
+A2="Liz"
+A3="Eric"
+A4="Jenny"
+A5="Sandy"
+AllNBAPlayer=()
+for i in ${A1} ${A2} ${A3} ${A4} ${A5}
+do
+    AllNBAPlayer+=(${i})
+done
+
+# 從陣列中判斷是否含有1值
+TMP=(0 0 0 0 0 0 0 0 1 0)
+if [[ "${TMP[@]}" =~ "1" ]]
+then
+    echo "There is an 1 in the array."
+else
+    echo "Found nothing"
 
