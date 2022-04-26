@@ -37,3 +37,9 @@ do
     fi
     echo $l
 done
+
+# while read讀取AllPCIeBDF檔案的每一行，並對每行文字進行處理
+while IFS=/ RootPort EndPort
+do
+    echo "${RootPort} and ${EndPort}"
+done < AllPCIeBDF
